@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="row">
+{% block content %}
+
+            <div class="properties-area recent-property" style="background-color: #FFF;">
+            <div class="container">
+
+                <div class="col-md-3 p0 padding-top-40">
+                    <div class="blog-asside-right pr0">
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Search</h3>
+                            </div>
+                            <div class="panel-body search-widget">
+                                <form action="{% url 'post:search' %}" class=" form-inline" method="get">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <input name="q" type="text" class="form-control" placeholder="Key word">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+
+                                                <select name="city" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City">
+                                                <option>Dhaka</option>
+                                                <option>Chittagong</option>
+                                                <option>Khulna</option>
+                                                <option>Rajshahi</option>
+                                                <option>Sylhet</option>
+                                                <option>Barisal</option>
+                                                <option>Bagerhat</option>
+                                                <option>Bandarban</option>
+                                                <option>Barguna</option>
+                                                <option>Bhola</option>
+                                                <option>Brahmanbaria</option>
+                                                <option>Bogra</option>
+                                                <option>Chandpur</option>
+                                                <option>Chuadanga</option>
+                                                <option>Comilla</option>
+                                                <option>Cox's Bazar</option>
+                                                <option>Dinajpur</option>
+                                                <option>Feni</option>
+                                                <option>Faridpur</option>
+                                                <option>Gaibandha</option>
+                                                <option>Gazipur</option>
+                                                <option>Gopalganj</option>
+                                                <option>Habiganj</option>
+                                                <option>Jessore</option>
+                                                <option>Jhalakati</option>
+                                                <option>Jamalpur</option>
+                                                <option>Joypurhat</option>
+                                                <option>Jhenaidah</option>
+                                                <option>Kurigram</option>
+                                                <option>Khagrachari</option>
+                                                <option>Kustia</option>
+                                                <option>Kishorganj</option>
+                                                <option>Laxmipur</option>
+                                                <option>Lalmonirhat</option>
+                                                <option>Madaripur</option>
+                                                <option>Magura</option>
+                                                <option>Meherpur</option>
+                                                <option>Moulvibazar</option>
+                                                <option>Mymensingh</option>
+                                                <option>Manikgonj</option>
+                                                <option>Munsiganj</option>
+                                                <option>Narail</option>
+                                                <option>Narayangonj</option>
+                                                <option>Noakhali</option>
+                                                <option>Naogaon</option>
+                                                <option>Narsingdi</option>
+                                                <option>Natore</option>
+                                                <option>Nawabgonj</option>
+                                                <option>Netrokona</option>
+                                                <option>Nilphamari</option>
+                                                <option>Pabna</option>
+                                                <option>Panchagarh</option>
+                                                <option>Patuakhali</option>
+                                                <option>Pirojpur</option>
+                                                <option>Rajbari</option>
+                                                <option>Rangamati</option>
+                                                <option>Rangpur</option>
+                                                <option>Shariatpur</option>
+                                                <option>Satkhira</option>
+                                                <option>Sherpur</option>
+                                                <option>Sirajganj</option>
+                                                <option>Sunamgonj</option>
+                                                <option>Tangail</option>
+                                                <option>Thakurgaon</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-6">
+
+                                                <select name="type" id="basic" class="selectpicker show-tick form-control" title="Select type">
+                                                    <option>Rent </option>
+                                                    <option>Buy</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="min_price">Price range ($):</label>
+                                                <input name="minPrice" type="number" class="form-control" placeholder="Min" id="min_price" >
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="max_price"></label>
+                                                <input name="maxPrice" type="number" class="form-control" placeholder="Max" id="max_price" >
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="padding-5">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="no-rooms">Number of rooms:</label>
+                                                <input name="rooms" type="number" class="form-control" value="0" id="no-rooms" ><br/>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset >
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <input class="button btn largesearch-btn" value="Search" type="submit">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% block appContent %} {% endblock %}
+                </div>
+            </div>
+
+{% endblock %}
+</div>

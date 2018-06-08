@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+            <div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+
+                <div class="clearfix padding-top-40" >
+
+                    <div class="col-md-8 single-property-content prp-style-1 ">
+                        <div class="row">
+                            <div class="light-slide-item">
+                                <div class="clearfix">
+                                    <div class="favorite-and-print">
+                                        <a class="printer-icon " href="javascript:window.print()">
+                                            <i class="fa fa-print"></i>
+                                        </a>
+                                    </div>
+
+                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                        <li data-thumb="{{ post.image_1.url }}">
+                                            <img src="{{ post.image_1.url }}" />
+                                        </li>
+                                        {% if post.image_2 %}
+                                            <li data-thumb="{{ post.image_2.url }}">
+                                                <img src="{{ post.image_2.url }}" />
+                                            </li>
+                                        {% endif %}
+                                        {% if post.image_3 %}
+                                            <li data-thumb="{{ post.image_3.url }}">
+                                                <img src="{{ post.image_3.url }}" />
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single-property-wrapper">
+                            <div class="single-property-header">
+                                <h1 class="property-title pull-left">{{ post.title }}</h1>
+                                <span class="property-price pull-right">${{ post.price }}</span>
+                            </div>
+
+                            <div class="property-meta entry-meta clearfix ">
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-bed" style="color: orange">
+                                        <span class="glyphicon glyphicon-map-marker"></span>
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">City</span>
+                                        <span class="property-info-value">{{ post.city }}</span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    {% if post.is_for_sale %}
+                                        <span class="property-info-icon icon-tag">
+                                            <img src="{% static 'assets/img/icon/sale-orange.png' %}">
+                                        </span>
+                                        <span class="property-info-entry">
+                                            <span class="property-info-label">Status</span>
+                                            <span class="property-info-value">For Sale</span>
+                                        </span>
+                                    {% else %}
+                                        <span class="property-info-icon icon-tag">
+                                            <img src="{% static 'assets/img/icon/rent-orange.png' %}">
+                                        </span>
+                                        <span class="property-info-entry">
+                                            <span class="property-info-label">Status</span>
+                                            <span class="property-info-value">For Rent</span>
+                                        </span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-bed">
+                                        <img src="{% static 'assets/img/icon/bed-orange.png' %}">
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">Rooms</span>
+                                        <span class="property-info-value">{{ post.rooms }}</span>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                    <span class="property-info-icon icon-bed" style="color: orange">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                    </span>
+                                    <span class="property-info-entry">
+                                        <span class="property-info-label">Floor</span>
+                                        <span class="property-info-value">{{ post.floor }}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- .property-meta -->
+
+                            <div class="section">
+                                <h4 class="s-property-title">Address</h4>
+                                <div class="s-property-content">
+                                    <p>{{ post.address }}</p>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <h4 class="s-property-title">Description</h4>
+                                <div class="s-property-content">
+                                    <p>{{ post.description }}</p>
+                                </div>
+                            </div>
+                            <!-- End description area  -->
+
+                            <div class="section">
+                                <h4 class="s-property-title">Contact Advertiser</h4>
+                                <div class="s-property-content">
+                                    <button class="btn btn-default"><span class="glyphicon glyphicon-phone-alt"></span></button> <span style="color: #00A2DE; padding-left: 5px; font-size: 22px;">{{ post.user.profile.phone }}</span> <br>
+                                    <button class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span></button> <span style="color: #00A2DE; padding-left: 5px; font-size: 22px;"><a href="mailto:{{ post.user.email }}" target="_top">{{ post.user.email }}</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 p0">
+                        <aside class="sidebar sidebar-property blog-asside-right">
+                            <div class="dealer-widget">
+                                <div class="dealer-content">
+                                    <div class="inner-wrapper">
+
+                                        <div class="clear">
+                                            {% if post.user.profile.picture %}
+                                            <div class="col-xs-4 col-sm-4 dealer-face">
+                                                <a href="">
+                                                    <img src="{{ post.user.profile.picture.url }}" class="img-circle">
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            <div class="col-xs-8 col-sm-8 ">
+                                                <h3 class="dealer-name">
+                                                    <span style="font-size: 25px;">{{ post.user.get_full_name }}</span>
+                                                </h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="clear">
+                                            <ul class="dealer-contacts">
+                                                <li><i class="pe-7s-mail strong"> </i>{{ post.user.email }}</li>
+                                                <hr>
+                                                <li><i class="pe-7s-call strong"> </i> {{ post.user.profile.phone }}</li>
+                                                <hr>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block script_section %}
+    <script type="text/javascript" src="{% static 'assets/js/lightslider.min.js' %}"></script>
+    <script>
+    $(document).ready(function () {
+
+        $('#image-gallery').lightSlider({
+            gallery: true,
+            item: 1,
+            thumbItem: 9,
+            slideMargin: 0,
+            speed: 500,
+            auto: true,
+            loop: true,
+            onSliderLoad: function () {
+                $('#image-gallery').removeClass('cS-hidden');
+            }
+        });
+    });
+</script>
+{% endblock %}

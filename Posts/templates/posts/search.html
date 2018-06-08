@@ -1,0 +1,66 @@
+{% extends "basewithsearch.html" %}
+{% load static %}
+{% block appContent %}
+
+    {% for post in posts %}
+        {% if forloop.counter < 3 %}
+            <div class="col-md-9  pr0 padding-top-40 properties-page mycontent">
+        {% else %}
+            <div class="col-md-9 col-md-offset-3  pr0 padding-top-40 properties-page mycontent">
+        {% endif %}
+
+                    <div class="col-md-12 clear">
+                        <div id="list-type" class="proerty-th-list">
+                            <div class="col-sm-6 col-md-4 p0">
+                                    <div class="box-two proerty-item">
+                                        <div class="item-thumb">
+                                            {% if post.image_1 %}
+                                            <a href="{% url 'post:detail' post.id %}" ><img src="{{ post.image_1.url }}"></a>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="item-entry overflow">
+                                            <h5><a href="{% url 'post:detail' post.id %}"> {{ post.title }} </a></h5>
+                                            <div class="dot-hr"></div>
+                                            <span class="proerty-price pull-right"> $ {{ post.price }}</span>
+                                            <p style="display: none;">{{ post.description|truncatechars:200 }}...</p>
+                                            <div class="property-icon">
+                                                <span class="glyphicon glyphicon-map-marker"></span> {{ post.city }}|
+                                                Rooms: {{ post.rooms }} |
+                                                For: {% if post.is_for_sale %}Sale{% else %} Rent {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+    {% endfor %}
+    <div class="col-md-12">
+        <div class="pull-right">
+            <div class="pagination">
+                <ul>
+                    {% if posts.has_previous %}
+                        <li><a href="{{ cu }}&page={{ posts.previous_page_number }}">Prev</a> </li>
+                    {% endif %}
+
+                    {% for num in prev %}
+                        <li><a href="{{ cu }}&page={{ num }}">{{ num }}</a> </li>
+                    {% endfor %}
+
+                    <li><a href="#" style="pointer-events: none; cursor: default; color: #1f2222;">{{ cu }}</a> </li>
+
+                    {% for num in next %}
+                        <li><a href="{{ cu }}&page={{ num }}">{{ num }}</a> </li>
+                    {% endfor %}
+
+                    {% if posts.has_next %}
+                        <li><a href="{{ cu }}&page={{ posts.next_page_number }}">Next</a> </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
